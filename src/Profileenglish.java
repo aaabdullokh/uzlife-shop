@@ -53,22 +53,33 @@ public class Profileenglish {
                 if (passwords[i] == password) {
                     onlineuser = phones[i];
                     System.out.println("successful");
-                    main2();
                     if (tel.startsWith("+998")) {
                         Main.uzbekclients++;
                         Main.clientsamount++;
+                        main2();
                         break;
-                    } else {
+                    }
+                    if (tel.startsWith("+888")){
+                        Main.pirateclients++;
+                        Main.clientsamount++;
+                        main2();
+                        break;
+                    }
+                    else {
                         Main.internationalclients++;
                         Main.clientsamount++;
+                        main2();
+                        break;
                     }
                 } else {
                     System.out.println("error-404");
                     main();
+                    break;
                 }
             } else {
                 System.out.println("error-404");
                 main();
+                break;
             }
         }
     }
@@ -85,13 +96,14 @@ public class Profileenglish {
     }
 
     public static void main2() {
-
+        System.out.println();
+        System.out.println("main menu");
+        Boss.main();
     }
 
     public static void start() {
-        phones[0] = "+998993467878";
-        passwords[0] = 2010;
+        phones[0] = "+8888080";
+        passwords[0] = 1111;
     }
 
 }
-

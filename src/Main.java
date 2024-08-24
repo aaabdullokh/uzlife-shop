@@ -8,6 +8,7 @@ public class Main {
     static int clientsamount = 0;
     static int uzbekclients = 0;
     static int internationalclients = 0;
+    static int pirateclients = 0;
 
     public static void main(String[] args) {
         start();
