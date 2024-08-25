@@ -17,12 +17,14 @@ public class Main {
     static int[] passwords = new int[1000];
     static String[] intercards = new String[1000];
     static String[] uzbcards = new String [1000];
+    static double[] interbalances = new double[1000];
+    static double[] uzbbalances = new double[1000];
     static int[] cvvs = new int[1000];
     static int[] postcodes = new int[1000];
     static String[] streets = new String[1000];
     static String onlineuser = "";
 
-    public static void main(String[] args) {
+    public static void main() {
         start();
     }
 

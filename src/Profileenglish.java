@@ -134,10 +134,16 @@ public class Profileenglish {
             if (card.startsWith("4") || card.startsWith("5") || card.startsWith("1")){
                 Main.intercards[i] = card;
                 Main.cvvs[i] = cvv;
+                for (int j = 1; j < 1000; j++) {
+                    Main.interbalances[j] = 100000.0;
+                }
                 break;
             }
             if (card.startsWith("8600") || card.startsWith("9860") || card.startsWith("5614")){
                 Main.uzbcards[i] = card;
+                for (int j = 1; j < 1000; j++) {
+                    Main.uzbbalances[j] = 100000.0;
+                }
             }
             Main.postcodes[i] = postcode;
             Main.streets[i] = street;
@@ -150,17 +156,20 @@ public class Profileenglish {
     public static void main2() {
         System.out.println();
         System.out.println("main menu");
+        Main.main();
     }
 
     public static void start() {
         Main.names[0] = "user";
-        Main.fnames[0] = "";
+        Main.fnames[0] = "family";
         Main.phones[0] = "+8888080";
         Main.passwords[0] = 1111;
         Main.intercards[0] = "4278310022281406";
         Main.cvvs[0] = 739;
         Main.postcodes[0] = 100058;
-        Main.streets[0] = "Mehrigiyo st.";
+        Main.streets[0] = "Mehrigiyo";
+        Main.interbalances[0] = 1000000.0;
+        Main.uzbbalances[0] = 1000000.0;
     }
 
 }
