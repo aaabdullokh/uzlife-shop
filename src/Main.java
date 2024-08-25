@@ -9,6 +9,8 @@ public class Main {
     static int uzbekclients = 0;
     static int internationalclients = 0;
     static int pirateclients = 0;
+    static int uzbcardsamount = 0;
+    static int internationalcardsamount = 0;
 
     public static void main(String[] args) {
         start();
