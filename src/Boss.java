@@ -28,8 +28,8 @@ public class Boss {
         System.out.println("number of pirate users : " + Main.pirateclients);
         System.out.println("number of international cards : " + Main.internationalcardsamount);
         System.out.println("number of uzbek cards : " + Main.uzbcardsamount);
-        System.out.print("online user : ");
-        System.out.println(Profileenglish.onlineuser);
+        System.out.println();
+
     }
 
 }

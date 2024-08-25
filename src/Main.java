@@ -11,6 +11,16 @@ public class Main {
     static int pirateclients = 0;
     static int uzbcardsamount = 0;
     static int internationalcardsamount = 0;
+    static String[] names = new String[1000];
+    static String[] fnames = new String[1000];
+    static String[] phones = new String[1000];
+    static int[] passwords = new int[1000];
+    static String[] intercards = new String[1000];
+    static String[] uzbcards = new String [1000];
+    static int[] cvvs = new int[1000];
+    static int[] postcodes = new int[1000];
+    static String[] streets = new String[1000];
+    static String onlineuser = "";
 
     public static void main(String[] args) {
         start();
@@ -26,20 +36,20 @@ public class Main {
         System.out.println("2. русский язык");
         System.out.println("3. o'zbek tili");
         System.out.print("enter : ");
-        int languageenter = put.nextInt();
-        if (languageenter == 1) {
+        String languageenter = put.nextLine();
+        if (languageenter.equals("1")) {
             English.main();
             return;
         }
-        if (languageenter == 2) {
+        if (languageenter.equals("2")) {
             Russian.main();
             return;
         }
-        if (languageenter == 3) {
+        if (languageenter.equals("3")) {
             Uzbek.main();
             return;
         }
-        if (languageenter == 987123) {
+        if (languageenter.equals("boss")) {
             Boss.main();
         } else {
             System.out.println("error-404");
