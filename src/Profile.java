@@ -7,7 +7,6 @@ public class Profile {
     static Scanner put = new Scanner(System.in);
 
     public static void main() {
-        data();
         System.out.println();
         System.out.println("profile");
         enter();
@@ -49,14 +48,14 @@ public class Profile {
         Scanner scanner = new Scanner(System.in);
         System.out.println();
         System.out.println("log in");
-        System.out.print("enter your phone number : ");
-        String tel = scanner.nextLine();
+        System.out.print("enter your phone number or e-mail : ");
+        String telemail = scanner.nextLine();
         System.out.print("enter your password : ");
         String password = scanner.nextLine();
         for (int i = 0; i < Main.phones.length; i++) {
-            if (Main.phones[i] != null && tel.equals(Main.phones[i])) {
+            if (Main.phones[i] != null && telemail.equals(Main.phones[i]) || Main.emails[i] != null && Main.emails[i].equals(telemail)) {
                 if (Main.passwords[i].equals(password)) {
-                    Main.onlineuser = tel;
+                    Main.onlineuser = telemail;
                     System.out.println("successful");
                     main2();
                 } else {
@@ -76,7 +75,7 @@ public class Profile {
         if (Main.onlineuser != null) {
             System.out.println();
             System.out.println("do you want to exit from this profile ?");
-            System.out.println("1.yes");
+            System.out.println("1. yes");
             System.out.println("2. no");
             System.out.print("enter : ");
             int enter = put.nextInt();
@@ -104,13 +103,19 @@ public class Profile {
         String name = strings.nextLine();
         System.out.print("enter your family name : ");
         String fname = strings.nextLine();
+        System.out.print("enter your e-mail : ");
+        String email = strings.nextLine();
+        if (!(email.endsWith("@icloud.com") || email.endsWith("@gmail.com") || email.endsWith("@hotmail.com") || email.endsWith("@yahoo.com"))){
+            System.out.println("error-404");
+            main();
+        }
         System.out.print("enter your phone number : ");
         String tel = strings.nextLine();
         System.out.print("enter your new password : ");
         String password = strings.nextLine();
         System.out.print("enter your card number : ");
         String card = strings.nextLine();
-        String cvv = "";
+        String cvv = null;
         if (card.startsWith("4") || card.startsWith("1") || card.startsWith("55")) {
             System.out.print("enter your card cvv code : ");
             cvv = strings.nextLine();
@@ -120,49 +125,37 @@ public class Profile {
         System.out.print("enter your street name : ");
         String street = strings.nextLine();
         for (int i = 0; i < Main.phones.length; i++) {
-            if (Main.phones[i] != null && Main.phones[i].equals(tel) || Main.intercards[i] != null && Main.intercards[i].equals(card) || Main.uzbcards[i] != null && Main.uzbcards[i].equals(card)) {
+            if (Main.emails[i] != null && Main.emails[i].equals(email) || Main.phones[i] != null && Main.phones[i].equals(tel) || Main.cards[i] != null && Main.cards[i].equals(card)) {
                 System.out.println("error-404");
-                signup();
+                main();
             }
         }
         for (int i = 1; i < 1000; i++) {
             Main.names[i] = name;
             Main.fnames[i] = fname;
+            Main.emails[i] = email;
+            Main.phones[i] = tel;
+            Main.passwords[i] = password;
+            Main.cards[i] = card;
+            Main.cvvs[i] = cvv;
+            Main.balances[i] = 1000000.0;
+            Main.postcodes[i] = postcode;
+            Main.streets[i] = street;
+            Main.onlineuser = tel;
             if (tel.startsWith("+998")) {
-                Main.phones[i] = tel;
                 Main.clientsamount++;
                 Main.uzbekclients++;
                 break;
             }
             if (tel.startsWith("+888")) {
-                Main.phones[i] = tel;
                 Main.clientsamount++;
                 Main.pirateclients++;
                 break;
             } else {
-                Main.phones[i] = tel;
                 Main.clientsamount++;
                 Main.internationalclients++;
             }
-            Main.passwords[i] = password;
-            if (card.startsWith("4") || card.startsWith("5") || card.startsWith("1")) {
-                Main.intercards[i] = card;
-                Main.cvvs[i] = cvv;
-                for (int j = 1; j < 1000; j++) {
-                    Main.interbalances[j] = 100000.0;
-                }
-                break;
-            }
-            if (card.startsWith("8600") || card.startsWith("9860") || card.startsWith("5614")) {
-                Main.uzbcards[i] = card;
-                for (int j = 1; j < 1000; j++) {
-                    Main.uzbbalances[j] = 100000.0;
-                }
-            }
-            Main.postcodes[i] = postcode;
-            Main.streets[i] = street;
         }
-        Main.onlineuser = tel;
         System.out.println("successful");
         main2();
     }
@@ -206,16 +199,16 @@ public class Profile {
     public static void data() {
         Main.names[0] = "user";
         Main.fnames[0] = "family";
+        Main.emails[0] = "bekakbdullokh00@icloud.com";
         Main.phones[0] = "+8888080";
+        Main.clientsamount++;
         Main.pirateclients++;
         Main.passwords[0] = "1111";
-        Main.intercards[0] = "4278310022281406";
+        Main.cards[0] = "4278310022281406";
         Main.cvvs[0] = "739";
-        Main.uzbcards[0] = "8600490523819969";
         Main.postcodes[0] = 100058;
         Main.streets[0] = "Mehrigiyo";
-        Main.interbalances[0] = 1000000.0;
-        Main.uzbbalances[0] = 1000000.0;
+        Main.balances[0] = 1000000.0;
     }
 
 }

@@ -26,8 +26,7 @@ public class Boss {
         System.out.println("number of uzbek users : " + Main.uzbekclients);
         System.out.println("number of international users : " + Main.internationalclients);
         System.out.println("number of pirate users : " + Main.pirateclients);
-        System.out.println("number of international cards : " + Main.internationalcardsamount);
-        System.out.println("number of uzbek cards : " + Main.uzbcardsamount);
+        System.out.println("number of cards : " + Main.cardsamount);
         System.out.println();
         System.out.println("users : ");
         System.out.println();
@@ -42,6 +41,10 @@ public class Boss {
                 System.out.println(Main.fnames[i]);
             }
             if (Main.names[i] != null){
+                System.out.print("user e-mail : ");
+                System.out.println(Main.emails[i]);
+            }
+            if (Main.names[i] != null){
                 System.out.print("user phone : ");
                 System.out.println(Main.phones[i]);
             }
@@ -50,24 +53,16 @@ public class Boss {
                 System.out.println(Main.passwords[i]);
             }
             if (Main.names[i] != null){
-                System.out.print("user international card : ");
-                System.out.println(Main.intercards[i]);
+                System.out.print("user card : ");
+                System.out.println(Main.cards[i]);
             }
             if (Main.names[i] != null){
                 System.out.print("user cvv code : ");
                 System.out.println(Main.cvvs[i]);
             }
             if (Main.names[i] != null){
-                System.out.print("user international balance : ");
-                System.out.println(Main.interbalances[i]);
-            }
-            if (Main.names[i] != null){
-                System.out.print("user uzbek card : ");
-                System.out.println(Main.uzbcards[i]);
-            }
-            if (Main.names[i] != null){
-                System.out.print("user uzbek balance : ");
-                System.out.println(Main.uzbbalances[i]);
+                System.out.print("user balance : ");
+                System.out.println(Main.balances[i]);
             }
             if (Main.names[i] != null){
                 System.out.print("user postcode : ");
