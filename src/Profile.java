@@ -2,12 +2,12 @@ package src;
 
 import java.util.Scanner;
 
-public class Profileenglish {
+public class Profile {
 
     static Scanner put = new Scanner(System.in);
 
     public static void main() {
-        start();
+        data();
         System.out.println();
         System.out.println("profile");
         enter();
@@ -18,6 +18,7 @@ public class Profileenglish {
         System.out.println("1. log in");
         System.out.println("2. sign up");
         System.out.println("3. back");
+        System.out.println("0. log out");
         System.out.print("enter : ");
         int enter = put.nextInt();
         switch (enter) {
@@ -33,6 +34,14 @@ public class Profileenglish {
                 English.menu();
                 break;
             }
+            case 0: {
+                logout();
+                break;
+            }
+            default: {
+                System.out.println("error-404");
+                main();
+            }
         }
     }
 
@@ -43,30 +52,13 @@ public class Profileenglish {
         System.out.print("enter your phone number : ");
         String tel = scanner.nextLine();
         System.out.print("enter your password : ");
-        int password = scanner.nextInt();
+        String password = scanner.nextLine();
         for (int i = 0; i < Main.phones.length; i++) {
             if (Main.phones[i] != null && tel.equals(Main.phones[i])) {
-                if (Main.passwords[i] == password) {
-                    Main.onlineuser = Main.phones[i];
+                if (Main.passwords[i].equals(password)) {
+                    Main.onlineuser = tel;
                     System.out.println("successful");
-                    if (tel.startsWith("+998")) {
-                        Main.uzbekclients++;
-                        Main.clientsamount++;
-                        main2();
-                        break;
-                    }
-                    if (tel.startsWith("+888")){
-                        Main.pirateclients++;
-                        Main.clientsamount++;
-                        main2();
-                        break;
-                    }
-                    else {
-                        Main.internationalclients++;
-                        Main.clientsamount++;
-                        main2();
-                        break;
-                    }
+                    main2();
                 } else {
                     System.out.println("error-404");
                     main();
@@ -81,6 +73,29 @@ public class Profileenglish {
     }
 
     public static void signup() {
+        if (Main.onlineuser != null) {
+            System.out.println();
+            System.out.println("do you want to exit from this profile ?");
+            System.out.println("1.yes");
+            System.out.println("2. no");
+            System.out.print("enter : ");
+            int enter = put.nextInt();
+            switch (enter){
+                case 1: {
+                    Main.onlineuser = null;
+                    System.out.println("you logged out successfully");
+                    break;
+                }
+                case 2: {
+                    main();
+                    break;
+                }
+                default : {
+                    System.out.println("error-404");
+
+                }
+            }
+        }
         Scanner strings = new Scanner(System.in);
         Scanner ints = new Scanner(System.in);
         System.out.println();
@@ -92,46 +107,45 @@ public class Profileenglish {
         System.out.print("enter your phone number : ");
         String tel = strings.nextLine();
         System.out.print("enter your new password : ");
-        int password = ints.nextInt();
+        String password = strings.nextLine();
         System.out.print("enter your card number : ");
         String card = strings.nextLine();
-        int cvv = 0;
-        if (card.startsWith("4") || card.startsWith("1") || card.startsWith("5")) {
+        String cvv = "";
+        if (card.startsWith("4") || card.startsWith("1") || card.startsWith("55")) {
             System.out.print("enter your card cvv code : ");
-            cvv = ints.nextInt();
+            cvv = strings.nextLine();
         }
         System.out.print("enter your postcode : ");
         int postcode = ints.nextInt();
         System.out.print("enter your street name : ");
         String street = strings.nextLine();
         for (int i = 0; i < Main.phones.length; i++) {
-            if (Main.phones[i] != null && Main.phones[i].equals(tel) || Main.intercards[i].equals(card)){
+            if (Main.phones[i] != null && Main.phones[i].equals(tel) || Main.intercards[i] != null && Main.intercards[i].equals(card) || Main.uzbcards[i] != null && Main.uzbcards[i].equals(card)) {
                 System.out.println("error-404");
                 signup();
             }
         }
-        for (int i = 0; i < 1000; i++) {
+        for (int i = 1; i < 1000; i++) {
             Main.names[i] = name;
             Main.fnames[i] = fname;
-            if (tel.startsWith("+998")){
+            if (tel.startsWith("+998")) {
                 Main.phones[i] = tel;
                 Main.clientsamount++;
                 Main.uzbekclients++;
                 break;
             }
-            if (tel.startsWith("+888")){
+            if (tel.startsWith("+888")) {
                 Main.phones[i] = tel;
                 Main.clientsamount++;
                 Main.pirateclients++;
                 break;
-            }
-            else {
+            } else {
                 Main.phones[i] = tel;
                 Main.clientsamount++;
                 Main.internationalclients++;
             }
             Main.passwords[i] = password;
-            if (card.startsWith("4") || card.startsWith("5") || card.startsWith("1")){
+            if (card.startsWith("4") || card.startsWith("5") || card.startsWith("1")) {
                 Main.intercards[i] = card;
                 Main.cvvs[i] = cvv;
                 for (int j = 1; j < 1000; j++) {
@@ -139,7 +153,7 @@ public class Profileenglish {
                 }
                 break;
             }
-            if (card.startsWith("8600") || card.startsWith("9860") || card.startsWith("5614")){
+            if (card.startsWith("8600") || card.startsWith("9860") || card.startsWith("5614")) {
                 Main.uzbcards[i] = card;
                 for (int j = 1; j < 1000; j++) {
                     Main.uzbbalances[j] = 100000.0;
@@ -147,25 +161,57 @@ public class Profileenglish {
             }
             Main.postcodes[i] = postcode;
             Main.streets[i] = street;
-            Main.onlineuser = tel;
         }
+        Main.onlineuser = tel;
         System.out.println("successful");
         main2();
+    }
+
+    public static void logout() {
+        Main.start();
+        /*for (int i = 0; i < 1000; i++) {
+            Main.onlineuser = Main.phones[i];
+            Main.names[i] = null;
+            Main.fnames[i] = null;
+            Main.phones[i] = null;
+            Main.passwords[i] = 0;
+            Main.intercards[i] = null;
+            Main.cvvs[i] = null;
+            Main.uzbcards[i] = null;
+            Main.postcodes[i] = 0;
+            Main.streets[i] = null;
+            Main.interbalances[i] = 0.0;
+            Main.uzbbalances[i] = 0.0;
+            Main.clientsamount--;
+            if (Main.phones[i].startsWith("+998")){
+                Main.uzbekclients--;
+                break;
+            }
+            if (Main.phones[i].startsWith("+888")){
+                Main.pirateclients--;
+            }
+            else {
+                Main.internationalclients--;
+            }
+        }*/
+        Main.start();
     }
 
     public static void main2() {
         System.out.println();
         System.out.println("main menu");
-        Main.main();
+        Main.start();
     }
 
-    public static void start() {
+    public static void data() {
         Main.names[0] = "user";
         Main.fnames[0] = "family";
         Main.phones[0] = "+8888080";
-        Main.passwords[0] = 1111;
+        Main.pirateclients++;
+        Main.passwords[0] = "1111";
         Main.intercards[0] = "4278310022281406";
-        Main.cvvs[0] = 739;
+        Main.cvvs[0] = "739";
+        Main.uzbcards[0] = "8600490523819969";
         Main.postcodes[0] = 100058;
         Main.streets[0] = "Mehrigiyo";
         Main.interbalances[0] = 1000000.0;

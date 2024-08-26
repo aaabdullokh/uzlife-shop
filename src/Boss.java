@@ -1,7 +1,6 @@
 package src;
 
 import java.util.Scanner;
-import java.util.Scanner;
 
 public class Boss {
 
@@ -9,6 +8,7 @@ public class Boss {
     static double balance = 1000000.0;
 
     public static void main() {
+        Profile.data();
         start();
     }
 
@@ -30,8 +30,10 @@ public class Boss {
         System.out.println("number of uzbek cards : " + Main.uzbcardsamount);
         System.out.println();
         System.out.println("users : ");
+        System.out.println();
         for (int i = 0; i < Main.names.length; i++) {
             if (Main.names[i] != null){
+                System.out.println();
                 System.out.print("user name : ");
                 System.out.println(Main.names[i]);
             }
@@ -52,20 +54,20 @@ public class Boss {
                 System.out.println(Main.intercards[i]);
             }
             if (Main.names[i] != null){
-                System.out.print("user uzbek card : ");
-                System.out.println(Main.uzbcards[i]);
+                System.out.print("user cvv code : ");
+                System.out.println(Main.cvvs[i]);
             }
             if (Main.names[i] != null){
                 System.out.print("user international balance : ");
                 System.out.println(Main.interbalances[i]);
             }
             if (Main.names[i] != null){
-                System.out.print("user uzbek balance : ");
-                System.out.println(Main.uzbbalances[i]);
+                System.out.print("user uzbek card : ");
+                System.out.println(Main.uzbcards[i]);
             }
             if (Main.names[i] != null){
-                System.out.print("user cvv : ");
-                System.out.println(Main.cvvs[i]);
+                System.out.print("user uzbek balance : ");
+                System.out.println(Main.uzbbalances[i]);
             }
             if (Main.names[i] != null){
                 System.out.print("user postcode : ");
@@ -76,6 +78,7 @@ public class Boss {
                 System.out.println(Main.streets[i]);
             }
          }
+        Main.start();
     }
 
 }

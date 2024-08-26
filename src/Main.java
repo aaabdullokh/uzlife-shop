@@ -14,21 +14,23 @@ public class Main {
     static String[] names = new String[1000];
     static String[] fnames = new String[1000];
     static String[] phones = new String[1000];
-    static int[] passwords = new int[1000];
+    static String[] passwords = new String[1000];
     static String[] intercards = new String[1000];
-    static String[] uzbcards = new String [1000];
+    static String[] uzbcards = new String[1000];
     static double[] interbalances = new double[1000];
     static double[] uzbbalances = new double[1000];
-    static int[] cvvs = new int[1000];
+    static String[] cvvs = new String[1000];
     static int[] postcodes = new int[1000];
     static String[] streets = new String[1000];
-    static String onlineuser = "";
+    static String onlineuser = null;
 
-    public static void main() {
+    public static void main(String[] args) {
         start();
     }
 
     public static void start() {
+        Profile.data();
+        System.out.println();
         System.out.println("ltd \"uzlife ecosystem\"");
         System.out.println("uzlife shop");
         System.out.println("hello !");
@@ -59,5 +61,10 @@ public class Main {
         }
     }
 
+    public static void error(){
+        System.out.println();
+        System.out.println("sorry , but this menu is not working now !");
+        start();
+    }
 
 }
