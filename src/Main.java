@@ -67,28 +67,6 @@ public class Main {
         }
     }
 
-    public static void more(){
-        System.out.println();
-        System.out.println("do you want to do something else ? ");
-        System.out.println("1. yes");
-        System.out.println("2. no");
-        System.out.println("enter : ");
-        int enter = put.nextInt();
-        switch (enter) {
-            case 1: {
-                Main.main2();
-                break;
-            }
-            case 2: {
-                Main.main2();
-            }
-            default: {
-                System.out.println("error-404");
-                more();
-            }
-        }
-    }
-
     public static void error(){
         System.out.println();
         System.out.println("sorry , but this menu is not working now !");

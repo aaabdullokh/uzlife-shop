@@ -1,6 +1,5 @@
 package src;
 
-import java.awt.event.ItemListener;
 import java.util.Scanner;
 
 public class Profile {
@@ -114,6 +113,33 @@ public class Profile {
         String tel = strings.nextLine();
         System.out.print("enter your new password : ");
         String password = strings.nextLine();
+        int big = 0, small = 0, number = 0, belgi = 0;
+        for (int i = 0; i < password.length(); i++) {
+            if (Character.isUpperCase(password.charAt(i))){
+                big++;
+            }
+            if (Character.isLowerCase(password.charAt(i))){
+                small++;
+            }
+            if (Character.isDigit(password.charAt(i))){
+                number++;
+            }
+            if (!Character.isUpperCase(password.charAt(i)) && !Character.isLowerCase(password.charAt(i)) && !Character.isDigit(password.charAt(i)) && !Character.isWhitespace(password.charAt(i))){
+                belgi++;
+            }
+            if (Character.isWhitespace(password.charAt(i))){
+                System.out.println("error-404");
+                main();
+                break;
+            }
+        }
+        if (big > 0 && small > 0 && number > 0 && belgi > 0 && password.length() >= 8){
+
+        }
+        else {
+            System.out.println("error-404");
+            main();
+        }
         System.out.print("enter your card number : ");
         String card = strings.nextLine();
         String cvv = null;
@@ -178,7 +204,7 @@ public class Profile {
                 System.out.println();
                 System.out.println("profile");
                 for (int i = 0; i < Main.names.length; i++) {
-                    if (Main.names[i] != null) {
+                    if (Main.names[i] != null && Main.phones[i].equals(tel)) {
                         System.out.println("your name : " + Main.names[i]);
                         System.out.println("your family name : " + Main.fnames[i]);
                         System.out.println("your e-mail : " + Main.emails[i]);
@@ -189,56 +215,12 @@ public class Profile {
                         System.out.println("your street name : " + Main.streets[i]);
                     }
                 }
-                Main.more();
                 break;
             }
             case 2: {
-                Scanner strings = new Scanner(System.in);
-                Scanner digits = new Scanner(System.in);
-                String tel = Main.onlineuser;
                 System.out.println();
                 System.out.println("edit profile");
-                System.out.println("what do you want to edit ?");
-                System.out.println("1. name");
-                System.out.println("2. family name");
-                System.out.println("3. e-mail");
-                System.out.println("4. card");
-                System.out.println("5. postcode");
-                System.out.println("6. street name");
-                System.out.println("0. back");
-                System.out.println("enter : ");
-                int edit = put.nextInt();
-                switch (edit) {
-                    case 1: {
-                        System.out.println("enter your new name : ");
-                        String name = strings.nextLine();
-                        for (int i = 0; i < Main.names.length; i++) {
-
-                        }
-                    }
-                    case 2: {
-
-                    }
-                    case 3: {
-
-                    }
-                    case 4: {
-
-                    }
-                    case 5: {
-
-                    }
-                    case 6: {
-
-                    }
-                    case 0: {
-                        main2();
-                    }
-                    default: {
-                        System.out.println("error-404");
-                        main2();
-                    }
-                }
+                System.out.println();
                 break;
             }
             case 3: {

@@ -53,6 +53,9 @@ public class English {
                 Profile.main();
                 break;
             }
+            case 0: {
+                Main.main2();
+            }
             default: {
                 System.out.println("error-404");
                 menu();
