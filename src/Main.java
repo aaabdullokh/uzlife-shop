@@ -20,14 +20,22 @@ public class Main {
     static String[] cvvs = new String[1000];
     static int[] postcodes = new int[1000];
     static String[] streets = new String[1000];
-    static String onlineuser = null;
+    static String onlineuser = "";
 
     public static void main(String[] args) {
+        main2();
+    }
+
+    public static void main2(){
+        datas();
         start();
     }
 
-    public static void start() {
+    public static void datas(){
         Profile.data();
+    }
+
+    public static void start() {
         System.out.println();
         System.out.println("ltd \"uzlife ecosystem\"");
         System.out.println("uzlife shop");
@@ -51,11 +59,33 @@ public class Main {
             Uzbek.main();
             return;
         }
-        if (languageenter.equals("boss")) {
+        if (languageenter.equals("uzlifeboss")) {
             Boss.main();
         } else {
             System.out.println("error-404");
             start();
+        }
+    }
+
+    public static void more(){
+        System.out.println();
+        System.out.println("do you want to do something else ? ");
+        System.out.println("1. yes");
+        System.out.println("2. no");
+        System.out.println("enter : ");
+        int enter = put.nextInt();
+        switch (enter) {
+            case 1: {
+                Main.main2();
+                break;
+            }
+            case 2: {
+                Main.main2();
+            }
+            default: {
+                System.out.println("error-404");
+                more();
+            }
         }
     }
 

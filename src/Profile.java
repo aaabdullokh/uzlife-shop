@@ -1,5 +1,6 @@
 package src;
 
+import java.awt.event.ItemListener;
 import java.util.Scanner;
 
 public class Profile {
@@ -14,32 +15,32 @@ public class Profile {
 
     public static void enter() {
         System.out.println();
-        System.out.println("1. log in");
-        System.out.println("2. sign up");
-        System.out.println("3. back");
-        System.out.println("0. log out");
-        System.out.print("enter : ");
-        int enter = put.nextInt();
-        switch (enter) {
-            case 1: {
-                login();
-                break;
-            }
-            case 2: {
-                signup();
-                break;
-            }
-            case 3: {
-                English.menu();
-                break;
-            }
-            case 0: {
-                logout();
-                break;
-            }
-            default: {
-                System.out.println("error-404");
-                main();
+        if (!(Main.onlineuser.equals(""))) {
+            main2();
+        }
+        if (Main.onlineuser.equals("")) {
+            System.out.println("1. log in");
+            System.out.println("2. sign up");
+            System.out.println("0. back");
+            System.out.print("enter : ");
+            int enter = put.nextInt();
+            switch (enter) {
+                case 1: {
+                    login();
+                    break;
+                }
+                case 2: {
+                    signup();
+                    break;
+                }
+                case 0: {
+                    English.menu();
+                    break;
+                }
+                default: {
+                    System.out.println("error-404");
+                    main();
+                }
             }
         }
     }
@@ -48,14 +49,14 @@ public class Profile {
         Scanner scanner = new Scanner(System.in);
         System.out.println();
         System.out.println("log in");
-        System.out.print("enter your phone number or e-mail : ");
-        String telemail = scanner.nextLine();
+        System.out.print("enter your phone number: ");
+        String tel = scanner.nextLine();
         System.out.print("enter your password : ");
         String password = scanner.nextLine();
         for (int i = 0; i < Main.phones.length; i++) {
-            if (Main.phones[i] != null && telemail.equals(Main.phones[i]) || Main.emails[i] != null && Main.emails[i].equals(telemail)) {
+            if (Main.phones[i] != null && tel.equals(Main.phones[i])) {
                 if (Main.passwords[i].equals(password)) {
-                    Main.onlineuser = telemail;
+                    Main.onlineuser = tel;
                     System.out.println("successful");
                     main2();
                 } else {
@@ -72,16 +73,16 @@ public class Profile {
     }
 
     public static void signup() {
-        if (Main.onlineuser != null) {
+        if (!(Main.onlineuser.equals(""))) {
             System.out.println();
             System.out.println("do you want to exit from this profile ?");
             System.out.println("1. yes");
             System.out.println("2. no");
             System.out.print("enter : ");
             int enter = put.nextInt();
-            switch (enter){
+            switch (enter) {
                 case 1: {
-                    Main.onlineuser = null;
+                    Main.onlineuser = "";
                     System.out.println("you logged out successfully");
                     break;
                 }
@@ -89,7 +90,7 @@ public class Profile {
                     main();
                     break;
                 }
-                default : {
+                default: {
                     System.out.println("error-404");
 
                 }
@@ -105,7 +106,7 @@ public class Profile {
         String fname = strings.nextLine();
         System.out.print("enter your e-mail : ");
         String email = strings.nextLine();
-        if (!(email.endsWith("@icloud.com") || email.endsWith("@gmail.com") || email.endsWith("@hotmail.com") || email.endsWith("@yahoo.com"))){
+        if (!(email.endsWith("@icloud.com") || email.endsWith("@gmail.com") || email.endsWith("@hotmail.com") || email.endsWith("@yahoo.com"))) {
             System.out.println("error-404");
             main();
         }
@@ -124,7 +125,7 @@ public class Profile {
         int postcode = ints.nextInt();
         System.out.print("enter your street name : ");
         String street = strings.nextLine();
-        for (int i = 0; i < Main.phones.length; i++) {
+        for (int i = 0; i < 1000; i++) {
             if (Main.emails[i] != null && Main.emails[i].equals(email) || Main.phones[i] != null && Main.phones[i].equals(tel) || Main.cards[i] != null && Main.cards[i].equals(card)) {
                 System.out.println("error-404");
                 main();
@@ -160,40 +161,114 @@ public class Profile {
         main2();
     }
 
-    public static void logout() {
-        Main.start();
-        /*for (int i = 0; i < 1000; i++) {
-            Main.onlineuser = Main.phones[i];
-            Main.names[i] = null;
-            Main.fnames[i] = null;
-            Main.phones[i] = null;
-            Main.passwords[i] = 0;
-            Main.intercards[i] = null;
-            Main.cvvs[i] = null;
-            Main.uzbcards[i] = null;
-            Main.postcodes[i] = 0;
-            Main.streets[i] = null;
-            Main.interbalances[i] = 0.0;
-            Main.uzbbalances[i] = 0.0;
-            Main.clientsamount--;
-            if (Main.phones[i].startsWith("+998")){
-                Main.uzbekclients--;
-                break;
-            }
-            if (Main.phones[i].startsWith("+888")){
-                Main.pirateclients--;
-            }
-            else {
-                Main.internationalclients--;
-            }
-        }*/
-        Main.start();
-    }
-
     public static void main2() {
         System.out.println();
         System.out.println("main menu");
-        Main.start();
+        System.out.println("1. profile");
+        System.out.println("2. edit profile");
+        System.out.println("3. show password and cvv");
+        System.out.println("4. delete profile");
+        System.out.println("5. log out");
+        System.out.println("0. back");
+        System.out.print("enter : ");
+        int enter = put.nextInt();
+        switch (enter) {
+            case 1: {
+                String tel = Main.onlineuser;
+                System.out.println();
+                System.out.println("profile");
+                for (int i = 0; i < Main.names.length; i++) {
+                    if (Main.names[i] != null) {
+                        System.out.println("your name : " + Main.names[i]);
+                        System.out.println("your family name : " + Main.fnames[i]);
+                        System.out.println("your e-mail : " + Main.emails[i]);
+                        System.out.println("your phone number : " + Main.phones[i]);
+                        System.out.println("your card number : " + Main.cards[i]);
+                        System.out.println("your balance : " + Main.balances[i]);
+                        System.out.println("your postcode : " + Main.postcodes[i]);
+                        System.out.println("your street name : " + Main.streets[i]);
+                    }
+                }
+                Main.more();
+                break;
+            }
+            case 2: {
+                Scanner strings = new Scanner(System.in);
+                Scanner digits = new Scanner(System.in);
+                String tel = Main.onlineuser;
+                System.out.println();
+                System.out.println("edit profile");
+                System.out.println("what do you want to edit ?");
+                System.out.println("1. name");
+                System.out.println("2. family name");
+                System.out.println("3. e-mail");
+                System.out.println("4. card");
+                System.out.println("5. postcode");
+                System.out.println("6. street name");
+                System.out.println("0. back");
+                System.out.println("enter : ");
+                int edit = put.nextInt();
+                switch (edit) {
+                    case 1: {
+                        System.out.println("enter your new name : ");
+                        String name = strings.nextLine();
+                        for (int i = 0; i < Main.names.length; i++) {
+
+                        }
+                    }
+                    case 2: {
+
+                    }
+                    case 3: {
+
+                    }
+                    case 4: {
+
+                    }
+                    case 5: {
+
+                    }
+                    case 6: {
+
+                    }
+                    case 0: {
+                        main2();
+                    }
+                    default: {
+                        System.out.println("error-404");
+                        main2();
+                    }
+                }
+                break;
+            }
+            case 3: {
+                System.out.println();
+                System.out.println("show password");
+                System.out.println();
+                break;
+            }
+            case 4: {
+                System.out.println();
+                System.out.println("delete profile");
+                System.out.println();
+                break;
+            }
+            case 5: {
+                System.out.println();
+                System.out.println("log out");
+                System.out.println();
+                Main.onlineuser = "";
+                English.main();
+                break;
+            }
+            case 0: {
+                English.main();
+            }
+            default: {
+                System.out.println("error-404");
+                main2();
+            }
+        }
     }
 
     public static void data() {
