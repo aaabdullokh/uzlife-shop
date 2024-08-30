@@ -1,15 +1,21 @@
 package src;
 
+import com.sun.jdi.event.ThreadDeathEvent;
+
+import javax.naming.spi.DirObjectFactory;
+import javax.swing.*;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Main {
 
     static Scanner put = new Scanner(System.in);
-    static int clientsamount = 0;
+    static int clients = 0;
     static int uzbekclients = 0;
-    static int internationalclients = 0;
-    static int pirateclients = 0;
-    static int cardsamount = 0;
+    static int interclients = 0;
+    static int intercards = 0;
+    static int uzbekcards = 0;
+    static int newusers = 0;
     static String[] names = new String[1000];
     static String[] fnames = new String[1000];
     static String[] emails = new String[1000];
@@ -18,59 +24,120 @@ public class Main {
     static String[] cards = new String[1000];
     static double[] balances = new double[1000];
     static String[] cvvs = new String[1000];
-    static int[] postcodes = new int[1000];
+    static String[] postcodes = new String[1000];
     static String[] streets = new String[1000];
     static String onlineuser = "";
 
-    public static void main(String[] args) {
-        main2();
-    }
-
-    public static void main2(){
+    public static void main(String[] args) throws InterruptedException {
+        loading();
         datas();
-        start();
+        main2();
+
     }
 
-    public static void datas(){
-        Profile.data();
-    }
-
-    public static void start() {
+    public static void loading() throws InterruptedException {
         System.out.println();
-        System.out.println("ltd \"uzlife ecosystem\"");
-        System.out.println("uzlife shop");
+        System.out.print("loading");
+        Thread.sleep(700);
+        System.out.print(".");
+        Thread.sleep(500);
+        System.out.print(".");
+        Thread.sleep(300);
+        System.out.print(".");
+        Thread.sleep(1000);
+        System.out.println();
+        System.out.println("successful");
+        Thread.sleep(500);
+    }
+
+
+    public static void main2() throws InterruptedException {
+        /*System.out.println();
+        System.out.println("                         [||||]      [||||]     [||||||||||||]     [||||]             [||||]                  /[||||]\\          ");
+        System.out.println("                         [||||]      [||||]     [||||||||||||]     [||||]             [||||]                /[||||||||]\\        ");
+        System.out.println("                         [||||]      [||||]     [||||]             [||||]             [||||]              /[||]/    \\[||]\\     ");
+        System.out.println("                         [||||||||||||||||]     [||||||||||]       [||||]             [||||]             [||]/        \\[||]     ");
+        System.out.println("                         [||||||||||||||||]     [||||||||||]       [||||]             [||||]             [||]\\        /[||]     ");
+        System.out.println("                         [||||]      [||||]     [||||]             [||||]             [||||]              \\[||]\\    /[||]/     ");
+        System.out.println("                         [||||]      [||||]     [||||||||||||]     [||||||||||||]     [||||||||||||]        \\[||||||||]/        ");
+        System.out.println("                         [||||]      [||||]     [||||||||||||]     [||||||||||||]     [||||||||||||]          \\[||||]/          ");
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println();*/
+        System.out.println();
         System.out.println("hello !");
+        System.out.println("ltd \"uzlife holding system\"");
+        System.out.println("uzlife shop");
+        start();
+    }
+
+    public static void datas() throws InterruptedException {
+        Profile.userdata();
+        Profile.alldata();
+    }
+
+    public static void start() throws InterruptedException {
         System.out.println();
-        System.out.println("choose the language : ");
-        System.out.println("1. english");
-        System.out.println("2. русский язык");
-        System.out.println("3. o'zbek tili");
+        System.out.println("1. just to see goods and prices");
+        System.out.println("2. enter profile");
         System.out.print("enter : ");
-        String languageenter = put.nextLine();
-        if (languageenter.equals("1")) {
-            English.main();
-            return;
-        }
-        if (languageenter.equals("2")) {
-            Russian.main();
-            return;
-        }
-        if (languageenter.equals("3")) {
-            Uzbek.main();
-            return;
-        }
-        if (languageenter.equals("uzlifeboss")) {
-            Boss.main();
-        } else {
-            System.out.println("error-404");
-            start();
+        int enter = put.nextInt();
+        switch (enter) {
+            case 1: {
+                error();
+                break;
+            }
+            case 2: {
+                Profile.main();
+                break;
+            }
+            case 3: {
+                Boss.main();
+                break;
+            }
+            default: {
+                System.out.println("error-404");
+                start();
+            }
         }
     }
 
-    public static void error(){
+    public static void more() throws InterruptedException {
         System.out.println();
-        System.out.println("sorry , but this menu is not working now !");
+        System.out.println("do you want to do something else ? ");
+        System.out.println("1. yes");
+        System.out.println("2. no");
+        System.out.print("enter : ");
+        int enter = put.nextInt();
+        switch (enter) {
+            case 1: {
+                start();
+                break;
+            }
+            case 2: {
+                end();
+                break;
+            }
+            default: {
+                System.out.println("error-404");
+                more();
+            }
+        }
+    }
+
+    public static void error() throws InterruptedException {
+        System.out.println();
+        System.out.println("sorry , but this menu is not working yet !");
         start();
+    }
+
+    public static void end(){
+        System.out.println();
+        System.out.println("thank you !");
+        return;
     }
 
 }

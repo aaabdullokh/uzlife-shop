@@ -7,7 +7,7 @@ public class English {
     static Scanner put = new Scanner(System.in);
     static int menu;
 
-    public static void main() {
+    public static void main() throws InterruptedException {
         System.out.println();
         System.out.println("english");
         System.out.println();
@@ -16,7 +16,7 @@ public class English {
         menu();
     }
 
-    public static void menu() {
+    public static void menu() throws InterruptedException {
         System.out.println();
         System.out.println("menu");
         System.out.println("1.  sales and promotions");
