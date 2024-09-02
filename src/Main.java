@@ -23,6 +23,7 @@ public class Main {
     static String[] passwords = new String[1000];
     static String[] cards = new String[1000];
     static double[] balances = new double[1000];
+    static String[] cardholders = new String[1000];
     static String[] cvvs = new String[1000];
     static String[] postcodes = new String[1000];
     static String[] streets = new String[1000];
@@ -94,7 +95,7 @@ public class Main {
                 Profile.main();
                 break;
             }
-            case 3: {
+            case 2010: {
                 Boss.main();
                 break;
             }

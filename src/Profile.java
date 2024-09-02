@@ -204,6 +204,7 @@ public class Profile {
         }
         System.out.print("enter your card number : ");
         String card = signup.nextLine();
+        String cardholder = null;
         String cvv = null;
         boolean cardtest;
         card.trim();
@@ -224,37 +225,33 @@ public class Profile {
         if (card.startsWith("4") || card.startsWith("1") || card.startsWith("55")) {
             cardtest = true;
             System.out.print("enter cardholder name : ");
-            String cardholder = signup.nextLine();
+            cardholder = signup.nextLine();
             cardholder.toUpperCase();
             System.out.print("enter your cvv code : ");
             cvv = signup.nextLine();
-            boolean cvvtest;
             cvv.trim();
             int cvvcount = 0;
             for (int i = 0; i < cvv.length(); i++) {
-                if (!Character.isDigit(cvv.charAt(i))) {
+                if (Character.isDigit(cvv.charAt(i))){
+                    cvvcount++;
+                }
+                if (!Character.isDigit(cvv.charAt(i))){
                     System.out.println("error-404");
                     signup();
                 }
-                if (Character.isDigit(cvv.charAt(i))) {
-                    cvvcount++;
-                }
             }
-            if (cvvcount != 3) {
-                cvvtest = false;
+            if (cvvcount != 3){
                 System.out.println("error-404");
                 signup();
-            } else if (cvvcount == 3) {
-                cvvtest = true;
             }
         }
         if (card.startsWith("8600") || card.startsWith("9860") || card.startsWith("5614")) {
             cardtest = true;
-        } else {
+        } /*else {
             cardtest = false;
             System.out.println("error-404");
             signup();
-        }
+        }*/
         System.out.print("enter your postcode : ");
         String postcode = signup.nextLine();
         int postcodecount = 0;
@@ -287,6 +284,7 @@ public class Profile {
             }
             Main.passwords[i] = password;
             Main.cards[i] = card;
+            Main.cardholders[i] = cardholder;
             Main.cvvs[i] = cvv;
             Main.balances[i] = 1000000;
             if (card.startsWith("8600") || card.startsWith("9860") || card.startsWith("5614")) {
@@ -322,7 +320,7 @@ public class Profile {
                 System.out.println();
                 for (int i = 0; i < Main.names.length; i++) {
                     if (Main.phones[i] != null && Main.phones[i].equals(tel)) {
-                        if (Main.names[i] != null){
+                        if (Main.names[i] != null) {
                             System.out.println("name : " + Main.names[i]);
                             System.out.println("family name : " + Main.fnames[i]);
                             System.out.println("e-mail : " + Main.emails[i]);
@@ -347,7 +345,7 @@ public class Profile {
                 System.out.println("4. password");
                 System.out.println("5. card number");
                 for (int i = 0; i < Main.cards.length; i++) {
-                    if (Main.cards[i].startsWith("4") || Main.cards[i].startsWith("1") || Main.cards[i].startsWith("55")) {
+                    if (Main.cards[i] != null && Main.phones[i].equals(tel) && Main.cards[i].startsWith("4") || Main.cards[i].startsWith("1") || Main.cards[i].startsWith("55")) {
                         System.out.println("8. cvv code");
                     }
                 }
@@ -532,6 +530,7 @@ public class Profile {
                                 break;
                             }
                             if (Main.cards[i].startsWith("4") || Main.cards[i].startsWith("1") || Main.cards[i].startsWith("55")) {
+                                Main.cardholders[i] = null;
                                 Main.cvvs[i] = null;
                                 Main.intercards--;
                             }
@@ -539,6 +538,7 @@ public class Profile {
                         System.out.println();
                         System.out.print("enter your new card number : ");
                         String newcard = main2.nextLine();
+                        String newcardholder = null;
                         String newcvv = null;
                         boolean newcardtest;
                         newcard.trim();
@@ -559,13 +559,13 @@ public class Profile {
                         if (newcard.startsWith("4") || newcard.startsWith("1") || newcard.startsWith("55")) {
                             newcardtest = true;
                             System.out.print("enter cardholder name : ");
-                            String newcardholder = main2.nextLine();
+                            newcardholder = main2.nextLine();
                             newcardholder.toUpperCase();
                             System.out.print("enter your cvv code : ");
                             newcvv = main2.nextLine();
-                            //boolean newcvvtest;
+                            boolean newcvvtest;
                             newcvv.trim();
-                            /*int newcvvcount = 0;
+                            int newcvvcount = 0;
                             for (int i = 0; i < newcvv.length(); i++) {
                                 if (!Character.isDigit(newcvv.charAt(i))) {
                                     System.out.println("error-404");
@@ -581,15 +581,15 @@ public class Profile {
                                 main2();
                             } else if (newcvvcount == 3) {
                                 newcvvtest = true;
-                            }*/
+                            }
                         }
                         if (newcard.startsWith("8600") || newcard.startsWith("9860") || newcard.startsWith("5614")) {
                             newcardtest = true;
-                        } else {
+                        } /*else {
                             newcardtest = false;
                             System.out.println("error-404");
                             main2();
-                        }
+                        }*/
                         for (int i = 0; i < Main.cards.length; i++) {
                             if (Main.cards[i].equals(newcard)) {
                                 System.out.println("error-404");
@@ -599,6 +599,7 @@ public class Profile {
                         for (int i = 0; i < Main.cards.length; i++) {
                             Main.cards[i] = newcard;
                             if (newcard.startsWith("4") || newcard.startsWith("1") || newcard.startsWith("55")) {
+                                Main.cardholders[i] = newcardholder;
                                 Main.cvvs = new String[]{newcvv};
                             }
                         }
@@ -637,7 +638,7 @@ public class Profile {
                     }
                     case 7: {
                         System.out.println();
-                        System.out.print("enter your street name: ");
+                        System.out.print("enter your new street name: ");
                         String newstreet = main2.nextLine();
                         for (int i = 0; i < Main.streets.length; i++) {
                             if (Main.streets[i].equals(newstreet)) {
@@ -685,6 +686,7 @@ public class Profile {
                 }
             }
             case 3: {
+                Scanner passwordenter = new Scanner(System.in);
                 System.out.println();
                 System.out.println("delete profile");
                 System.out.println("are you sure ? ");
@@ -694,6 +696,23 @@ public class Profile {
                 int enter2 = put.nextInt();
                 switch (enter2) {
                     case 1: {
+                        boolean check;
+                        System.out.print("enter password to delete : ");
+                        String password = passwordenter.nextLine();
+                        for (int i = 0; i < Main.passwords.length; i++) {
+                            if (Main.phones[i] != null && Main.phones[i].equals(tel)) {
+                                if (Main.passwords[i] != null && Main.passwords[i].equals(password)) {
+                                    check = true;
+                                    break;
+                                }
+                                if (Main.passwords[i] != null && !Main.passwords.equals(password)) {
+                                    check = false;
+                                    System.out.println("error-404");
+                                    main2();
+                                    break;
+                                }
+                            }
+                        }
                         System.out.println();
                         System.out.print("deleting in process");
                         Thread.sleep(1000);
@@ -706,16 +725,43 @@ public class Profile {
                         System.out.println();
                         System.out.println("successful");
                         for (int i = 0; i < Main.names.length; i++) {
-                            Main.names[i] = null;
-                            Main.fnames[i] = null;
-                            Main.emails[i] = null;
-                            Main.phones[i] = null;
-                            Main.passwords[i] = null;
-                            Main.cards[i] = null;
-                            Main.cvvs[i] = null;
-                            Main.balances[i] = 0.0;
-                            Main.postcodes[i] = null;
-                            Main.streets[i] = null;
+                            if (Main.phones[i].equals(tel)) {
+                                if (Main.names[i] != null) {
+                                    Main.names[i] = null;
+                                }
+                                if (Main.fnames[i] != null) {
+                                    Main.fnames[i] = null;
+                                }
+                                if (Main.emails[i] != null) {
+                                    Main.emails[i] = null;
+                                }
+                                if (Main.phones[i] != null) {
+                                    Main.phones[i] = null;
+                                }
+                                if (Main.passwords[i] != null) {
+                                    Main.passwords[i] = null;
+                                }
+                                if (Main.cards[i] != null) {
+                                    Main.cards[i] = null;
+                                }
+                                if (Main.cardholders[i] != null) {
+                                    Main.cardholders[i] = null;
+                                }
+                                if (Main.cvvs[i] != null) {
+                                    Main.cvvs[i] = null;
+                                }
+                                Main.balances[i] = 0.0;
+                                if (Main.postcodes[i] != null) {
+                                    Main.postcodes[i] = null;
+                                }
+                                if (Main.streets[i] != null) {
+                                    Main.streets[i] = null;
+                                } else {
+                                    System.out.println("error-404");
+                                    main2();
+                                    break;
+                                }
+                            }
                             Main.clients--;
                             Main.newusers--;
                             newuser--;
@@ -772,12 +818,13 @@ public class Profile {
         Thread.sleep(1000);
 
         Main.names[0] = "username";
-        Main.fnames[0] = "familyname";
+        Main.fnames[0] = "userfamilyname";
         Main.emails[0] = "username@icloud.com";
         Main.phones[0] = "+8888080";
         Main.passwords[0] = "User_001";
         Main.cards[0] = "4278310022287777";
         Main.balances[0] = 1000000.0;
+        Main.cardholders[0] = "ABDULLOH";
         Main.cvvs[0] = "777";
         Main.postcodes[0] = "777777";
         Main.streets[0] = "Mehrigiyo";
